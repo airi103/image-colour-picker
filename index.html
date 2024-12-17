@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Color Picker</title>
+    <link href="./dist/output.css" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen p-4 md:p-8">
+    <main class="max-w-4xl mx-auto space-y-6">
+        <!-- upload section -->
+        <section class="bg-white rounded-xl shadow-lg p-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Image Color Picker</h1>
+            <div class="flex items-center justify-center w-full">
+                <label class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                        <p class="text-xs text-gray-500">PNG, JPG, WEBP, AVIF or others</p>
+                    </div>
+                    <input id="fileInput" type="file" class="hidden" accept="image/*" />
+                </label>
+            </div>
+        </section>
+
+        <!-- image preview and colour picker section -->
+        <section id="imageSection" class="hidden bg-white rounded-xl shadow-lg p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- image preview -->
+                <div class="relative">
+                    <canvas id="imageCanvas" class="w-full rounded-lg cursor-crosshair"></canvas>
+                    <div id="colorPreview" class="absolute w-6 h-6 border-2 border-white rounded-full shadow-lg pointer-events-none hidden"></div>
+                </div>
+
+                <!-- colour information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Selected Color</h2>
+                    
+                    <!-- current colour display -->
+                    <div id="selectedColor" class="w-full h-24 rounded-lg border border-gray-200"></div>
+                    
+                    <!-- colour values -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700">RGB:</span>
+                            <code id="rgbValue" class="bg-gray-100 px-3 py-1 rounded-lg text-sm"></code>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700">HEX:</span>
+                            <code id="hexValue" class="bg-gray-100 px-3 py-1 rounded-lg text-sm"></code>
+                        </div>
+                    </div>
+
+                    <!-- copy buttons -->
+                    <div class="flex gap-2">
+                        <button onclick="copyToClipboard('rgbValue')" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            Copy RGB
+                        </button>
+                        <button onclick="copyToClipboard('hexValue')" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            Copy HEX
+                        </button>
+                    </div>
+
+                    <!-- colour history -->
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Recent Colors</h3>
+                        <div id="colorHistory" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="dist/script.js"></script>
+</body>
+</html>
