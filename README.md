@@ -1,6 +1,6 @@
 # Image Colour Picker 🎨
 
-A simple web application to pick colours from any image. Try it live at [Github Pages](airi103.github.io/image-colour-picker)
+A simple web application to pick colours from any image. Try it live at [Github Pages](https://airi103.github.io/image-colour-picker/)
 
 ## Features
 
